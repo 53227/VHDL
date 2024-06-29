@@ -1,0 +1,21 @@
+-- VHDL code for a Half Adder
+
+-- Entity declaration
+entity half_adder is
+    Port (
+        A, B : in  std_logic;   -- Input bits A and B
+        Sum  : out std_logic;   -- Output Sum bit
+        Cout : out std_logic    -- Output Carry bit
+    );
+end half_adder;
+
+-- Architecture implementation
+architecture behavioral of half_adder is
+begin
+    -- Sum output logic (XOR operation)
+    Sum <= A xor B;
+
+    -- Carry output logic (AND operation)
+    Cout <= A and B;
+
+end behavioral;
