@@ -1,0 +1,29 @@
+-- VHDL code for a 2-to-4 Decoder
+
+-- Entity declaration
+entity decoder_2to4 is
+    Port (
+        D : in  std_logic_vector(1 downto 0);   -- Input vector D (2 bits)
+        Y : out std_logic_vector(3 downto 0)    -- Output vector Y (4 bits)
+    );
+end decoder_2to4;
+
+-- Architecture implementation
+architecture behavioral of decoder_2to4 is
+begin
+    process (D)
+    begin
+        case D is
+            when "00" =>
+                Y <= "0001";  -- Decode D = 00 to 0001
+            when "01" =>
+                Y <= "0010";  -- Decode D = 01 to 0010
+            when "10" =>
+                Y <= "0100";  -- Decode D = 10 to 0100
+            when "11" =>
+                Y <= "1000";  -- Decode D = 11 to 1000
+            when others =>
+                Y <= "0000";  -- Default case for no active inputs
+        end case;
+    end process;
+end behavioral;
