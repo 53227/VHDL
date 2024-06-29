@@ -1,0 +1,33 @@
+-- VHDL code for a Modulo-10 Counter
+
+-- Entity declaration
+entity mod10_counter is
+    Port (
+        CLK : in  std_logic;      -- Clock input
+        RST : in  std_logic;      -- Reset input
+        Q   : out std_logic_vector(3 downto 0)  -- Output Q (4 bits)
+    );
+end mod10_counter;
+
+-- Architecture implementation
+architecture behavioral of mod10_counter is
+    signal count : integer range 0 to 9 := 0;  -- Internal counter signal
+    
+begin
+    process (CLK, RST)
+    begin
+        if RST = '1' then
+            count <= 0;  -- Reset counter on active high reset
+        elsif rising_edge(CLK) then
+            if count = 9 then
+                count <= 0;  -- Reset counter at 9
+            else
+                count <= count + 1;  -- Increment counter on rising clock edge
+            end if;
+        end if;
+    end process;
+    
+    -- Output the counter value Q
+    Q <= std_logic_vector(to_unsigned(count, Q'length));
+    
+end behavioral;
