@@ -1,0 +1,25 @@
+-- VHDL code for a D Flip-Flop
+
+-- Entity declaration
+entity d_flip_flop is
+    Port (
+        D : in  std_logic;   -- Data input
+        CLK : in  std_logic; -- Clock input
+        Q : out std_logic    -- Output Q
+    );
+end d_flip_flop;
+
+-- Architecture implementation
+architecture behavioral of d_flip_flop is
+    signal internal_Q : std_logic;
+begin
+    process (CLK)
+    begin
+        if rising_edge(CLK) then
+            internal_Q <= D;  -- Update internal state on rising clock edge
+        end if;
+    end process;
+    
+    -- Assign output Q to internal state
+    Q <= internal_Q;
+end behavioral;
