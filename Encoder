@@ -1,0 +1,29 @@
+-- VHDL code for a 4-to-2 Priority Encoder
+
+-- Entity declaration
+entity priority_encoder is
+    Port (
+        I : in  std_logic_vector(3 downto 0);   -- Input vector I (4 bits)
+        E : out std_logic_vector(1 downto 0)    -- Output vector E (2 bits)
+    );
+end priority_encoder;
+
+-- Architecture implementation
+architecture behavioral of priority_encoder is
+begin
+    process (I)
+    begin
+        case I is
+            when "0001" =>
+                E <= "00";  -- Encode I = 0001 to 00
+            when "0010" =>
+                E <= "01";  -- Encode I = 0010 to 01
+            when "0100" =>
+                E <= "10";  -- Encode I = 0100 to 10
+            when "1000" =>
+                E <= "11";  -- Encode I = 1000 to 11
+            when others =>
+                E <= "00";  -- Default case for no active inputs
+        end case;
+    end process;
+end behavioral;
