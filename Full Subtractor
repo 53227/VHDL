@@ -1,0 +1,21 @@
+-- VHDL code for a Full Subtractor
+
+-- Entity declaration
+entity full_subtractor is
+    Port (
+        A, B, Bin : in  std_logic;   -- Input bits A (minuend), B (subtrahend), and Bin (borrow in)
+        Diff      : out std_logic;   -- Output Difference bit
+        Bout      : out std_logic    -- Output Borrow bit
+    );
+end full_subtractor;
+
+-- Architecture implementation
+architecture behavioral of full_subtractor is
+begin
+    -- Difference output logic (XOR operation)
+    Diff <= A xor B xor Bin;
+
+    -- Borrow output logic (NOT and AND operations)
+    Bout <= (not B and A) or (not Bin and (A xor B));
+
+end behavioral;
