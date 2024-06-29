@@ -1,0 +1,45 @@
+-- VHDL code for a 1-to-4 Demultiplexer
+
+-- Entity declaration
+entity demux_1to4 is
+    Port (
+        D   : in  std_logic;             -- Data input
+        S   : in  std_logic_vector(1 downto 0);   -- Select input (2 bits)
+        Y0, Y1, Y2, Y3 : out std_logic    -- Data outputs
+    );
+end demux_1to4;
+
+-- Architecture implementation
+architecture behavioral of demux_1to4 is
+begin
+    process (D, S)
+    begin
+        case S is
+            when "00" =>
+                Y0 <= D;  -- Route D to Y0 when S = 00
+                Y1 <= '0';
+                Y2 <= '0';
+                Y3 <= '0';
+            when "01" =>
+                Y0 <= '0';
+                Y1 <= D;  -- Route D to Y1 when S = 01
+                Y2 <= '0';
+                Y3 <= '0';
+            when "10" =>
+                Y0 <= '0';
+                Y1 <= '0';
+                Y2 <= D;  -- Route D to Y2 when S = 10
+                Y3 <= '0';
+            when "11" =>
+                Y0 <= '0';
+                Y1 <= '0';
+                Y2 <= '0';
+                Y3 <= D;  -- Route D to Y3 when S = 11
+            when others =>
+                Y0 <= '0';
+                Y1 <= '0';
+                Y2 <= '0';
+                Y3 <= '0';  -- Default case for no active selection
+        end case;
+    end process;
+end behavioral;
