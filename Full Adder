@@ -1,0 +1,21 @@
+-- VHDL code for a Full Adder
+
+-- Entity declaration
+entity full_adder is
+    Port (
+        A, B, Cin : in  std_logic;   -- Input bits A, B, and carry in Cin
+        Sum      : out std_logic;   -- Output Sum bit
+        Cout     : out std_logic    -- Output Carry bit
+    );
+end full_adder;
+
+-- Architecture implementation
+architecture behavioral of full_adder is
+begin
+    -- Sum output logic (XOR operation)
+    Sum <= (A xor B) xor Cin;
+
+    -- Carry output logic (OR and AND operations)
+    Cout <= (A and B) or (Cin and (A xor B));
+
+end behavioral;
