@@ -1,0 +1,21 @@
+-- VHDL code for a Half Subtractor
+
+-- Entity declaration
+entity half_subtractor is
+    Port (
+        A, B : in  std_logic;   -- Input bits A (minuend) and B (subtrahend)
+        Diff : out std_logic;   -- Output Difference bit
+        Bout : out std_logic    -- Output Borrow bit
+    );
+end half_subtractor;
+
+-- Architecture implementation
+architecture behavioral of half_subtractor is
+begin
+    -- Difference output logic (XOR operation)
+    Diff <= A xor B;
+
+    -- Borrow output logic (NOT and AND operations)
+    Bout <= (not B) and A;
+
+end behavioral;
